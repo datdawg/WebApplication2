@@ -17,6 +17,8 @@ function SmartCheckboxInit() {
 function NiceTime(sDateTime) {
     arrDateTime = sDateTime.split('T');
     sTime = arrDateTime[1];
+    arrTime = sTime.split(':');
+    sTime = arrTime[0] + ':' + arrTime[1];
     return sTime;
 }
 function NiceDate(sDateTime) {
