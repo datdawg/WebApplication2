@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Style/CSS/Global.min.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <meta name="description" content="The description of my page" />
+</head>
+<body>
+    <header>
+        <a href="/Basket/" class="basket-link">
+            <i class="fa fa-shopping-basket"></i>
+        </a>
+        <a href="/" class="logo">
+            Tick<span class="alt-color">it</span>
+        </a>
+    </header>
+    @RenderBody()
+    <footer>
+        <div class="footer-sections">
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="#0"><i class="fa fa-ticket"></i>TICKIT Gavekort</a></li>
+                    <li><a href="#0"><i class="fa fa-info"></i>Handelsbetingelser</a></li>
+                    <li><a href="#0"><i class="fa fa-list-ol"></i>Guide til arrangører</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Sociale medier</h3>
+                <ul>
+                    <li><a href="#0"><i class="fa fa-facebook"></i>Facebook</a></li>
+                    <li><a href="#0"><i class="fa fa-twitter"></i>Twitter</a></li>
+                    <li><a href="#0"><i class="fa fa-instagram"></i>Instagram</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+                <ul>
+                    <li><a href="tel:+4542222311"><i class="floatright fa fa-phone"></i>42 22 23 11</a></li>
+                    <li><a href="mailto:klaus.munk.jensen@gmail.com"><i class="floatright fa fa-envelope"></i>info@tickit.dk</a></li>
+                    <li><a href="https://www.google.dk/maps/place/Kannikegade+12,+8000+Aarhus+C"><i class="fa fa-map-marker"></i>Kannikegade 12, Aarhus C</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clr"></div>
+    </footer>
+    <div class="subfooter">
+        <div class="subfooter-content">
+            Copyright &copy; KMJ
+        </div>
+    </div>
+
+    <script src="https://use.fontawesome.com/8d208199f1.js"></script>
+    <script src="~/Scripts/Global.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
