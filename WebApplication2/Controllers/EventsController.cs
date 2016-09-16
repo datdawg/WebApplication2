@@ -29,5 +29,28 @@ namespace WebApplication2.Controllers
 
             return ev;
         }
+
+        [HttpGet]
+        [Route("api/events/search")]
+        public List<Events> Search(string s = "", string categories = "")
+        {
+            if(categories == null)
+            {
+                categories = "";
+            }
+            string[] arrCats = { };
+            if (categories != "")
+            {
+                arrCats = categories.TrimEnd(',').Split(',');
+            }
+
+            var data = _db.Events.Include(p => p.Location).Include(p => p.Media).Include(p => p.Categories).OrderBy(p => p.Id).Where(
+                p => p.Name.Contains(s) ||
+                p.Description.Contains(s) ||
+                s == null &&
+                arrCats.Contains(p.FK_Category.ToString())).ToList();
+
+            return data;
+        }
     }
 }

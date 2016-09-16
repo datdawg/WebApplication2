@@ -1,5 +1,13 @@
 ﻿<main class="single-event" data-id="@Model">
-    <div class="event-page">
+    <div class="event-page"></div>
+    <div class="add-to-cart-holder">
+        <form name="frm-add-to-basket" id="frm-add-to-basket">
+            <input id="product" type="hidden" value="@Model" />
+            Vælg antal: <input class="qty" id="qty" value="1" type="number" placeholder="antal" />
+            <input class="btn-add-to-basket" id="btn-add-to-basket" type="submit" value="Læg i kurv" />
+        </form>
     </div>
 </main>
-@Scripts.Render("/Scripts/Pages/event.js")
+@section scripts {
+    @Scripts.Render("/Scripts/Pages/event.js")
+}

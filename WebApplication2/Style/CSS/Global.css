@@ -1,4 +1,25 @@
 ﻿@import 'https://fonts.googleapis.com/css?family=Raleway';
+@-moz-keyframes basketanim {
+  0% { }
+  50% {
+    transform: rotate(15deg); }
+  0% { } }
+
+@-webkit-keyframes basketanim {
+  0% { }
+  50% {
+    transform: rotate(15deg); }
+  0% { } }
+
+@keyframes basketanim {
+  0% { }
+  50% {
+    transform: rotate(15deg); }
+  0% { } }
+
+.notifyjs-corner {
+  top: 65px !important; }
+
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -26,7 +47,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
     border-bottom: 1px solid white; }
     body header .basket-link {
       display: block;
@@ -38,11 +59,16 @@ body {
         font-size: 30px;
         color: white;
         line-height: 59px;
-        /*.basket-item-counter {
-                    position: absolute;
-                    right: 0;
-                    top: 0;
-                }*/ }
+        position: relative;
+        float: right;
+        margin-left: 15px; }
+        body header .basket-link i.pulsate {
+          animation: basketanim 0.5s ease; }
+      body header .basket-link:hover i {
+        color: #b6ff00; }
+      body header .basket-link .basket-item-counter {
+        color: white;
+        float: right; }
     body header .logo {
       color: white;
       text-transform: uppercase;
@@ -60,10 +86,13 @@ body {
         text-shadow: 0 0 40px white; }
   body .hero {
     height: 500px;
-    background: url("/Img/party.jpg"); }
+    background: url("/Img/party_tickit_new.jpg");
+    box-shadow: inset 0px 0px 70px rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 1; }
     body .hero .hero-inner {
       display: table;
-      width: 1180px;
+      width: 980px;
       margin: auto;
       height: 500px; }
     body .hero .search-tags-container {
@@ -79,7 +108,7 @@ body {
         body .hero .search-tags-container .search-container h1 {
           font-size: 80px;
           letter-spacing: 10px;
-          text-shadow: 1px 1px 0 #999, 2px 2px 0 #888, 3px 3px 0 #777, 4px 4px 0 #666, 5px 5px 0 #555, 6px 6px 0 #444, 7px 7px 0 #333, 8px 8px 0 #222, 9px 9px 0 #111;
+          text-shadow: 5px 5px 10px black;
           color: white;
           text-transform: uppercase;
           font-weight: bold; }
@@ -124,6 +153,7 @@ body {
         body .hero .search-tags-container .tags-container .smart-lbl {
           display: inline-block;
           height: 40px;
+          width: 20%;
           line-height: 40px;
           padding: 0 40px;
           text-align: center;
@@ -153,6 +183,7 @@ body {
               transform: rotate(720deg); }
   body main {
     width: 1180px;
+    min-height: calc(100vh - 343px);
     margin: auto;
     padding: 40px;
     background-color: white; }
@@ -167,62 +198,159 @@ body {
       padding: 20px 0; }
     body main h2.place-date {
       margin: 0; }
-    body main .events-holder {
+    body main .events-holder, body main .search-holder {
       padding-bottom: 20px; }
-      body main .events-holder .event {
+      body main .events-holder .event, body main .search-holder .event {
         display: block;
         width: 340px;
         margin: 20px 0;
         text-decoration: none;
         float: left;
-        transition: 0.2s ease all;
+        transition: 0.1s ease-in-out all;
         position: relative;
-        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
+        box-shadow: 0px 0px 0px transparent;
         top: 0; }
-        body main .events-holder .event:hover {
-          box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.6);
-          top: -5px; }
-          body main .events-holder .event:hover .event-title h3 {
+        body main .events-holder .event:hover, body main .search-holder .event:hover {
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+          transform: scale(1.05); }
+          body main .events-holder .event:hover .event-title h3, body main .search-holder .event:hover .event-title h3 {
             color: #b6ff00; }
-          body main .events-holder .event:hover .event-info {
+          body main .events-holder .event:hover .event-info, body main .search-holder .event:hover .event-info {
             color: #b6ff00; }
-        body main .events-holder .event:nth-child(3n+2) {
+        body main .events-holder .event:nth-child(3n+2), body main .search-holder .event:nth-child(3n+2) {
           margin-left: 40px;
           margin-right: 40px; }
-        body main .events-holder .event .event-title {
+        body main .events-holder .event .event-title, body main .search-holder .event .event-title {
           display: block;
           background-color: #0a002f;
           padding: 15px;
           transition: 0.3s ease all; }
-          body main .events-holder .event .event-title h3 {
+          body main .events-holder .event .event-title h3, body main .search-holder .event .event-title h3 {
             font-weight: normal;
             margin: 0;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             color: white; }
-        body main .events-holder .event .event-image-location {
+        body main .events-holder .event .event-image-location, body main .search-holder .event .event-image-location {
           border-left: 1px solid #0a002f;
           border-right: 1px solid #0a002f;
-          position: relative; }
-          body main .events-holder .event .event-image-location img {
+          position: relative;
+          background-color: #0a002f; }
+          body main .events-holder .event .event-image-location img, body main .search-holder .event .event-image-location img {
             display: block;
             width: 338px;
             height: 150px; }
-          body main .events-holder .event .event-image-location .event-location {
+          body main .events-holder .event .event-image-location .event-location, body main .search-holder .event .event-image-location .event-location {
             position: absolute;
             top: 0;
             right: 0;
             background-color: rgba(0, 0, 0, 0.5);
             padding: 5px;
             color: white; }
-        body main .events-holder .event .event-info {
+        body main .events-holder .event .event-info, body main .search-holder .event .event-info {
           padding: 15px;
           background-color: #0a002f;
           color: white;
           transition: 0.3s ease all; }
-          body main .events-holder .event .event-info .event-date {
+          body main .events-holder .event .event-info .event-date, body main .search-holder .event .event-info .event-date {
             float: right; }
+    body main .add-to-cart-holder {
+      padding-top: 20px;
+      text-align: right; }
+      body main .add-to-cart-holder .qty {
+        width: 80px;
+        padding: 10px;
+        padding-right: 0;
+        text-align: center;
+        outline: 0; }
+      body main .add-to-cart-holder .btn-add-to-basket {
+        padding: 10px 30px;
+        border: 0;
+        background-color: #0a002f;
+        color: white;
+        cursor: pointer;
+        margin-left: 5px;
+        font-size: 16px;
+        outline: 0; }
+        body main .add-to-cart-holder .btn-add-to-basket:hover {
+          color: #b6ff00; }
+    body main .basket-holder {
+      display: none; }
+      body main .basket-holder .tbl-basket {
+        width: 100%;
+        border-collapse: collapse; }
+        body main .basket-holder .tbl-basket thead tr td {
+          background-color: #0a002f;
+          color: white; }
+        body main .basket-holder .tbl-basket tr td {
+          border-bottom: 1px solid #eeeeee;
+          padding: 10px 20px;
+          white-space: nowrap; }
+          body main .basket-holder .tbl-basket tr td.maximize {
+            width: 100%; }
+            body main .basket-holder .tbl-basket tr td.maximize a {
+              text-decoration: none;
+              color: #0a002f; }
+              body main .basket-holder .tbl-basket tr td.maximize a:hover {
+                text-decoration: underline; }
+          body main .basket-holder .tbl-basket tr td.price {
+            text-align: right; }
+          body main .basket-holder .tbl-basket tr td.qty {
+            text-align: center; }
+          body main .basket-holder .tbl-basket tr td:last-child {
+            text-align: right; }
+        body main .basket-holder .tbl-basket tr.total td {
+          background-color: #0a002f;
+          color: white;
+          text-align: right; }
+    body main .checkout-holder .tbl-checkout {
+      width: 50%;
+      float: left; }
+      body main .checkout-holder .tbl-checkout tr td {
+        padding: 10px; }
+        body main .checkout-holder .tbl-checkout tr td:first-child {
+          padding-left: 0; }
+        body main .checkout-holder .tbl-checkout tr td:last-child {
+          padding-right: 20px; }
+        body main .checkout-holder .tbl-checkout tr td input {
+          padding: 10px;
+          width: 100%; }
+          body main .checkout-holder .tbl-checkout tr td input.postcode {
+            width: 80px;
+            padding-right: 0; }
+    body main .checkout-holder .tbl-payment {
+      width: 50%;
+      float: left; }
+      body main .checkout-holder .tbl-payment tr td {
+        padding: 10px; }
+        body main .checkout-holder .tbl-payment tr td:last-child {
+          padding-right: 0; }
+        body main .checkout-holder .tbl-payment tr td:first-child {
+          padding-left: 20px; }
+        body main .checkout-holder .tbl-payment tr td input {
+          padding: 10px;
+          width: 100%; }
+          body main .checkout-holder .tbl-payment tr td input.securitycode {
+            width: 60px;
+            padding-right: 0;
+            text-align: center; }
+        body main .checkout-holder .tbl-payment tr td select {
+          padding: 10px;
+          width: 100%; }
+    body main .button-holder {
+      padding-top: 20px;
+      text-align: right; }
+      body main .button-holder input {
+        padding: 10px 30px;
+        border: 0;
+        background-color: #0a002f;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        outline: 0; }
+        body main .button-holder input:hover {
+          color: #b6ff00; }
   body footer {
     background-color: #0a002f; }
     body footer .footer-sections {

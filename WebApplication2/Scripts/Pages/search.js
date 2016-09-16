@@ -1,7 +1,6 @@
 ﻿$(document).ready(function () {
     SearchPlaceholder();
     LoadSearchCategories();
-    LoadUpcomingEvents();
 
     $('#frm-main-search').on('submit', function (e) {
         e.preventDefault();
@@ -18,13 +17,15 @@
 
         window.location = '/Search/';
     });
-});
 
-function LoadUpcomingEvents() {
+    objSearch = JSON.parse(localStorage.getItem('sSearch'));
+
     $.ajax({
-        url: "/api/events",
+        url: '/api/events/search?s=' + objSearch.Param + '&categories=' + objSearch.Categories,
         method: "GET"
     }).done(function (data) {
+        //console.log(data);
+
         $.each(data, function (key, item) {
             iId = item.Id;
             sName = item.Name;
@@ -43,8 +44,8 @@ function LoadUpcomingEvents() {
             sAppend = sAppend + '</div>';
             sAppend = sAppend + '</a>';
 
-            $('.events-holder').append(sAppend);
+            $('.search-holder').append(sAppend);
         })
-        $('.events-holder').append('<div class="clr"></div>');
+        $('.search-holder').append('<div class="clr"></div>');
     });
-}
+});

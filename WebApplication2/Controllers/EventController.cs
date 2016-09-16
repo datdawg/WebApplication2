@@ -10,8 +10,13 @@ namespace WebApplication2.Controllers
     public class EventController : Controller
     {
         // GET: Event
-        public ActionResult Index(int iEventID)
+        public ActionResult Index(int? iEventID)
         {
+            if (!iEventID.HasValue)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View(iEventID);
         }
     }

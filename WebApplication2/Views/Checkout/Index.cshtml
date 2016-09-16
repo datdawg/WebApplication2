@@ -1,0 +1,69 @@
+﻿<main>
+    <h2 class="header">Checkout</h2>
+    <div class="checkout-holder">
+        <table class="tbl-checkout">
+            <tr>
+                <td>Navn</td>
+                <td colspan="3"><input type="text" name="Name" /></td>
+            </tr>
+            <tr>
+                <td>Adresse</td>
+                <td colspan="3"><input type="text" name="Adresse" /></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td colspan="3"><input type="email" name="Email" /></td>
+            </tr>
+            <tr>
+                <td>Postnr</td>
+                <td><input class="postcode" type="number" name="Postnr" /></td>
+                <td>By</td>
+                <td><input type="text" name="By" /></td>
+            </tr>
+        </table>
+        <table class="tbl-payment">
+            <tr>
+                <td>Kortnummer</td>
+                <td colspan="3"><input type="text" name="Cardnumber" /></td>
+            </tr>
+            <tr>
+                <td>Udløbsdato</td>
+                <td>
+                    <select name="select-month" id="select-month">
+                        <option value="">- Måned</option>
+                        @for (var i = 1; i < 13; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    <select name="select-year" id="select-year">
+                        <option value="">- År</option>
+                        @for (var i = 2016; i < 2031; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Sikkerhedskode</td>
+                <td colspan="3"><input class="securitycode" type="number" name="Securitycode" /></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <input style="float: left; margin-right: 20px; width: auto;" type="checkbox" value="" id="accept" name="accept" />
+                    <label style="float: left;" for="accept">Accepter handelsbetingelser?</label>
+                </td>
+            </tr>
+        </table>
+        <div class="clr"></div>
+        <div class="button-holder">
+            <input type="submit" id="confirm-order" value="Bekræft ordre" />
+        </div>
+    </div>
+</main>
+@section scripts {
+    @Scripts.Render("~/Scripts/Pages/checkout.js")
+}

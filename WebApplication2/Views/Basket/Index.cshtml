@@ -1,5 +1,28 @@
 ﻿<main>
     <h2 class="header">Indkøbskurv</h2>
-    <div class="basket-holder"></div>
+    <div class="basket-holder">
+        <form name="frm-basket" id="frm-basket">
+            <table class="tbl-basket">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td class="maximize">Event</td>
+                        <td class="price">Pris</td>
+                        <td class="qty">Antal</td>
+                        <td>Total</td>
+                    </tr>
+                </thead>
+                <tr class="total">
+                    <td colspan="5"></td>
+                </tr>
+            </table>
+            <div class="button-holder">
+                <input type="submit" value="Videre til betaling" />
+            </div>
+        </form>
+    </div>
 </main>
-@Scripts.Render("~/Scripts/Pages/basket.js")
+@section scripts {
+    @Scripts.Render("~/Scripts/Custom/basketscripts.js")
+    @Scripts.Render("~/Scripts/Pages/basket.js")
+}

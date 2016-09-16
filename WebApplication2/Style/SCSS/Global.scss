@@ -1,8 +1,17 @@
 ﻿@import 'https://fonts.googleapis.com/css?family=Raleway';
+@import 'keyframes';
 
 $clr-main: #0a002f;
 $clr-alt: #b6ff00;
 $clr-offwhite: #eeeeee;
+
+$h-header: 60px;
+$h-footer: 209px;
+$h-subfooter: 74px;
+
+.notifyjs-corner {
+    top: 65px !important;
+}
 
 .noselect {
     -webkit-touch-callout: none;
@@ -37,7 +46,7 @@ body {
         position: fixed;
         top: 0;
         width: 100%;
-        z-index: 1;
+        z-index: 2;
         border-bottom: 1px solid white;
 
         .basket-link {
@@ -47,16 +56,28 @@ body {
             height: 59px;
             text-align: center;
 
-
             i {
                 font-size: 30px;
                 color: white;
                 line-height: 59px;
-                /*.basket-item-counter {
-                    position: absolute;
-                    right: 0;
-                    top: 0;
-                }*/
+                position: relative;
+                float: right;
+                margin-left: 15px;
+
+                &.pulsate {
+                    animation: basketanim 0.5s ease;
+                }
+            }
+
+            &:hover {
+                i {
+                    color: $clr-alt;
+                }
+            }
+
+            .basket-item-counter {
+                color: white;
+                float: right;
             }
         }
 
@@ -84,12 +105,19 @@ body {
 
     .hero {
         height: 500px;
-        background: url("/Img/party.jpg");
+        background: url("/Img/party_tickit_new.jpg");
+        box-shadow: inset 0px 0px 70px rgba(0,0,0,0.7);
+        //border-bottom: 5px solid $clr-main;
+        position: relative;
+        z-index: 1;
 
+        &.searchpage {
+            //display: none;
+        }
 
         .hero-inner {
             display: table;
-            width: 1180px;
+            width: 980px;
             margin: auto;
             height: 500px;
         }
@@ -111,7 +139,8 @@ body {
                 h1 {
                     font-size: 80px;
                     letter-spacing: 10px;
-                    text-shadow: 1px 1px 0 #999, 2px 2px 0 #888, 3px 3px 0 #777, 4px 4px 0 #666, 5px 5px 0 #555, 6px 6px 0 #444, 7px 7px 0 #333, 8px 8px 0 #222, 9px 9px 0 #111;
+                    //text-shadow: 1px 1px 0 #999, 2px 2px 0 #888, 3px 3px 0 #777, 4px 4px 0 #666, 5px 5px 0 #555, 6px 6px 0 #444, 7px 7px 0 #333, 8px 8px 0 #222, 9px 9px 0 #111;
+                    text-shadow: 5px 5px 10px black;
                     color: white;
                     text-transform: uppercase;
                     font-weight: bold;
@@ -168,6 +197,7 @@ body {
                 .smart-lbl {
                     display: inline-block;
                     height: 40px;
+                    width: 20%;
                     line-height: 40px;
                     padding: 0 40px;
                     text-align: center;
@@ -208,6 +238,8 @@ body {
 
     main {
         width: 1180px;
+        //min-height: calc(100vh - ($h-header + $h-footer + $h-subfooter));
+        min-height: calc(100vh - #{$h-header + $h-footer + $h-subfooter});
         margin: auto;
         padding: 40px;
         background-color: white;
@@ -235,7 +267,7 @@ body {
             margin: 0;
         }
 
-        .events-holder {
+        .events-holder, .search-holder {
             padding-bottom: 20px;
 
             .event {
@@ -244,14 +276,15 @@ body {
                 margin: 20px 0;
                 text-decoration: none;
                 float: left;
-                transition: 0.2s ease all;
+                transition: 0.1s ease-in-out all;
                 position: relative;
-                box-shadow: 0px 0px 0px rgba(0,0,0,0.6);
+                box-shadow: 0px 0px 0px rgba(0,0,0,0);
                 top: 0;
 
                 &:hover {
-                    box-shadow: 0px 5px 5px rgba(0,0,0,0.6);
-                    top: -5px;
+                    box-shadow: 0px 0px 20px rgba(0,0,0,0.7);
+                    //top: -2px;
+                    transform: scale(1.05);
 
                     .event-title {
                         h3 {
@@ -289,6 +322,7 @@ body {
                     border-left: 1px solid $clr-main;
                     border-right: 1px solid $clr-main;
                     position: relative;
+                    background-color: $clr-main;
 
                     img {
                         display: block;
@@ -318,6 +352,178 @@ body {
 
                     .event-category {
                     }
+                }
+            }
+        }
+
+        .add-to-cart-holder {
+            padding-top: 20px;
+            text-align: right;
+
+            .qty {
+                width: 80px;
+                padding: 10px;
+                padding-right: 0;
+                text-align: center;
+                outline: 0;
+            }
+
+            .btn-add-to-basket {
+                padding: 10px 30px;
+                border: 0;
+                background-color: $clr-main;
+                color: white;
+                cursor: pointer;
+                margin-left: 5px;
+                font-size: 16px;
+                outline: 0;
+
+                &:hover {
+                    color: $clr-alt;
+                }
+            }
+        }
+
+        .basket-holder {
+            display: none;
+
+            .tbl-basket {
+                width: 100%;
+                border-collapse: collapse;
+
+                thead {
+                    tr {
+                        td {
+                            background-color: $clr-main;
+                            color: white;
+                        }
+                    }
+                }
+
+                tr {
+                    td {
+                        border-bottom: 1px solid $clr-offwhite;
+                        padding: 10px 20px;
+                        white-space: nowrap;
+
+                        &.maximize {
+                            width: 100%;
+
+                            a {
+                                text-decoration: none;
+                                color: $clr-main;
+
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+
+                        &.price {
+                            text-align: right;
+                        }
+
+                        &.qty {
+                            text-align: center;
+                        }
+
+                        &:last-child {
+                            text-align: right;
+                        }
+                    }
+
+                    &.total {
+                        td {
+                            background-color: $clr-main;
+                            color: white;
+                            text-align: right;
+                        }
+                    }
+                }
+            }
+        }
+
+        .checkout-holder {
+            .tbl-checkout {
+                width: 50%;
+                float: left;
+
+                tr {
+                    td {
+                        padding: 10px;
+
+                        &:first-child {
+                            padding-left: 0;
+                        }
+
+                        &:last-child {
+                            padding-right: 20px;
+                        }
+
+                        input {
+                            padding: 10px;
+                            width: 100%;
+
+                            &.postcode {
+                                width: 80px;
+                                padding-right: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .tbl-payment {
+                width: 50%;
+                float: left;
+
+                tr {
+                    td {
+                        padding: 10px;
+
+                        &:last-child {
+                            padding-right: 0;
+                        }
+
+                        &:first-child {
+                            padding-left: 20px;
+                        }
+
+                        input {
+                            padding: 10px;
+                            width: 100%;
+
+                            &.securitycode {
+                                width: 60px;
+                                padding-right: 0;
+                                text-align: center;
+                            }
+                        }
+
+                        select {
+                            padding: 10px;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .button-holder {
+            padding-top: 20px;
+            text-align: right;
+
+            input {
+                padding: 10px 30px;
+                border: 0;
+                background-color: $clr-main;
+                color: white;
+                cursor: pointer;
+                font-size: 16px;
+                outline: 0;
+
+                &:hover {
+                    color: $clr-alt;
                 }
             }
         }

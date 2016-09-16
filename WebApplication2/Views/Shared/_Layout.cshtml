@@ -13,6 +13,7 @@
     <header>
         <a href="/Basket/" class="basket-link">
             <i class="fa fa-shopping-basket"></i>
+            <div class="basket-item-counter"><span class="counter"></span></div>
         </a>
         <a href="/" class="logo">
             Tick<span class="alt-color">it</span>
@@ -55,7 +56,9 @@
     </div>
 
     <script src="https://use.fontawesome.com/8d208199f1.js"></script>
+    <script src="~/Scripts/Custom/basketscripts.js"></script>
     <script src="~/Scripts/Global.js"></script>
+    <script src="~/Scripts/notify.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

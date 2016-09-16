@@ -1,12 +1,16 @@
 ﻿$(document).ready(function () {
-    console.log('global.js');
+    createBasket();
+    updateBasket();
+
+    CountBasketItems()
 });
 
 function SmartCheckboxInit() {
     $('.smart-check').each(function () {
+        iId = $(this).data('id');
         sTxt = $(this).data('txt');
         sIcon = '<i class="fa fa-check-circle"></i>';
-        $(this).wrap('<label class="smart-lbl noselect">' + sTxt + sIcon + '</label>');
+        $(this).wrap('<label data-id="' + iId + '" class="smart-lbl noselect">' + sTxt + sIcon + '</label>');
     });
     $(document).delegate('.smart-lbl', 'click', function () {
         $('.smart-lbl').on('click', function () {
@@ -63,5 +67,3 @@ function NiceDate(sDateTime) {
     sReturn = sReturn + ' ' + iYear;
     return sReturn;
 }
-
-
