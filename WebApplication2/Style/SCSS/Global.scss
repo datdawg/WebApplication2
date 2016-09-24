@@ -105,7 +105,7 @@ body {
 
     .hero {
         height: 500px;
-        background: url("/Img/party_tickit_new.jpg");
+        background: url("/Img/party_tickit_new.jpg") center top;
         box-shadow: inset 0px 0px 70px rgba(0,0,0,0.7);
         //border-bottom: 5px solid $clr-main;
         position: relative;
@@ -282,9 +282,8 @@ body {
                 top: 0;
 
                 &:hover {
-                    box-shadow: 0px 0px 20px rgba(0,0,0,0.7);
-                    //top: -2px;
-                    transform: scale(1.05);
+                    box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+
 
                     .event-title {
                         h3 {
@@ -468,6 +467,17 @@ body {
                                 width: 80px;
                                 padding-right: 0;
                             }
+                            /*
+
+                            &:valid {
+                                background-color: green;
+                            }
+
+                            &:invalid {
+                                background-color: red;
+                            }
+
+                            */
                         }
                     }
                 }
@@ -497,6 +507,21 @@ body {
                                 width: 60px;
                                 padding-right: 0;
                                 text-align: center;
+                            }
+
+                            &#accept:checked + label {
+                                &::after {
+                                    display: inline-block;
+                                    font-family: fontAwesome;
+                                    content: "\f058";
+                                    position: absolute;
+                                    margin-left: 5px;
+                                    margin-top: 1px;
+                                    color: green;
+                                    font-size: 2em;
+                                    line-height: 0.5em;
+                                    animation: zoomInOut 0.4s forwards ease-in-out;
+                                }
                             }
                         }
 

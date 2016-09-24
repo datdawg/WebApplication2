@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
-    createBasket();
-    updateBasket();
+    CreateBasket();
+    UpdateBasket();
 
-    CountBasketItems()
+    CountBasketItems();
 });
 
 function SmartCheckboxInit() {

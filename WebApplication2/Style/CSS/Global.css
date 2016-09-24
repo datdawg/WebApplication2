@@ -2,20 +2,58 @@
 @-moz-keyframes basketanim {
   0% { }
   50% {
+    -moz-transform: rotate(15deg);
+    -ms-transform: rotate(15deg);
+    -o-transform: rotate(15deg);
+    -webkit-transform: rotate(15deg);
     transform: rotate(15deg); }
   0% { } }
 
 @-webkit-keyframes basketanim {
   0% { }
   50% {
+    -moz-transform: rotate(15deg);
+    -ms-transform: rotate(15deg);
+    -o-transform: rotate(15deg);
+    -webkit-transform: rotate(15deg);
     transform: rotate(15deg); }
   0% { } }
 
 @keyframes basketanim {
   0% { }
   50% {
+    -moz-transform: rotate(15deg);
+    -ms-transform: rotate(15deg);
+    -o-transform: rotate(15deg);
+    -webkit-transform: rotate(15deg);
     transform: rotate(15deg); }
   0% { } }
+
+@keyframes zoomInOut {
+  0% {
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0); }
+  60% {
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9); }
+  80% {
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8); }
+  100% {
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9); } }
 
 .notifyjs-corner {
   top: 65px !important; }
@@ -86,7 +124,7 @@ body {
         text-shadow: 0 0 40px white; }
   body .hero {
     height: 500px;
-    background: url("/Img/party_tickit_new.jpg");
+    background: url("/Img/party_tickit_new.jpg") center top;
     box-shadow: inset 0px 0px 70px rgba(0, 0, 0, 0.7);
     position: relative;
     z-index: 1; }
@@ -211,8 +249,7 @@ body {
         box-shadow: 0px 0px 0px transparent;
         top: 0; }
         body main .events-holder .event:hover, body main .search-holder .event:hover {
-          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
-          transform: scale(1.05); }
+          box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); }
           body main .events-holder .event:hover .event-title h3, body main .search-holder .event:hover .event-title h3 {
             color: #b6ff00; }
           body main .events-holder .event:hover .event-info, body main .search-holder .event:hover .event-info {
@@ -315,7 +352,18 @@ body {
           padding-right: 20px; }
         body main .checkout-holder .tbl-checkout tr td input {
           padding: 10px;
-          width: 100%; }
+          width: 100%;
+          /*
+
+                            &:valid {
+                                background-color: green;
+                            }
+
+                            &:invalid {
+                                background-color: red;
+                            }
+
+                            */ }
           body main .checkout-holder .tbl-checkout tr td input.postcode {
             width: 80px;
             padding-right: 0; }
@@ -335,6 +383,17 @@ body {
             width: 60px;
             padding-right: 0;
             text-align: center; }
+          body main .checkout-holder .tbl-payment tr td input#accept:checked + label::after {
+            display: inline-block;
+            font-family: fontAwesome;
+            content: "\f058";
+            position: absolute;
+            margin-left: 5px;
+            margin-top: 1px;
+            color: green;
+            font-size: 2em;
+            line-height: 0.5em;
+            animation: zoomInOut 0.4s forwards ease-in-out; }
         body main .checkout-holder .tbl-payment tr td select {
           padding: 10px;
           width: 100%; }

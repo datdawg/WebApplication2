@@ -34,7 +34,7 @@ namespace WebApplication2.Controllers
         [Route("api/events/search")]
         public List<Events> Search(string s = "", string categories = "")
         {
-            if(categories == null)
+            if (categories == null)
             {
                 categories = "";
             }
@@ -44,11 +44,46 @@ namespace WebApplication2.Controllers
                 arrCats = categories.TrimEnd(',').Split(',');
             }
 
-            var data = _db.Events.Include(p => p.Location).Include(p => p.Media).Include(p => p.Categories).OrderBy(p => p.Id).Where(
-                p => p.Name.Contains(s) ||
+            if (s == "")
+            {
+                s = null;
+            }
+
+            var Eventlist = _db.Events.Include(p => p.Location).Include(p => p.Media).Include(p => p.Categories).OrderBy(p => p.Id);
+            var data = new List<Events>();
+            //if there is no search parameter or categories chosen: return all events.
+            if (s == null && arrCats.Length == 0)
+            {
+                data = Eventlist.ToList();
+            }
+            //if there is no search parameter but at least one category is chosen: return all from chosen categories.
+            else if (s == null && arrCats.Length > 0)
+            {
+                data = Eventlist.Where(p =>
+                arrCats.Contains(p.FK_Category.ToString())
+                ).ToList();
+            }
+            //if there is a search parameter but no categories are chosen: return all parameter matches from all categories.
+            else if (s != null && arrCats.Length == 0)
+            {
+                data = Eventlist.Where(p =>
+                p.Name.Contains(s) ||
                 p.Description.Contains(s) ||
-                s == null &&
-                arrCats.Contains(p.FK_Category.ToString())).ToList();
+                p.Location.City.Contains(s) ||
+                p.Location.Zipcode.ToString().Contains(s)
+                ).ToList();
+            }
+            //if there is a search parameter and at least one category is chosen: return all parameter matches from chosen categories.
+            else if (s != null && arrCats.Length > 0)
+            {
+                data = Eventlist.Where(p =>
+                p.Name.Contains(s) ||
+                p.Description.Contains(s) ||
+                p.Location.City.Contains(s) ||
+                p.Location.Zipcode.ToString().Contains(s) &&
+                arrCats.Contains(p.FK_Category.ToString())
+                ).ToList();
+            }
 
             return data;
         }
